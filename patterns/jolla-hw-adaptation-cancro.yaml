@@ -9,6 +9,7 @@ Requires:
 - pattern:jolla-ui-configuration-cancro
 
 - droid-hal-cancro
+- droid-hal-cancro-detritus
 - droid-hal-cancro-img-boot
 - droid-hal-cancro-kernel-modules
 - droid-config-cancro-sailfish
