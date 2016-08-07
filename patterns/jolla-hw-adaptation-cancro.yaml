@@ -19,6 +19,7 @@ Requires:
 - droid-hal-version-cancro
 
 - pulseaudio-modules-droid
+- pulseaudio-modules-droid-glue
 
 # These need to be per-device due to differing backends (fbdev, eglfs, hwc, ..?)
 - qt5-qtwayland-wayland_egl
