@@ -75,5 +75,10 @@ Requires:
 # For devices where test_gps eventually gets a fix:
 - geoclue-provider-hybris
 
+# For FM radio
+- qt5-qtmultimedia-plugin-mediaservice-irisradio
+- jolla-mediaplayer
+- jolla-mediaplayer-radio
+
 Summary: Jolla HW Adaptation cancro
 
