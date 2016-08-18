@@ -1,0 +1,3 @@
+
+[apps/jolla-startupwizard]
+android_selection_suppressed=true
