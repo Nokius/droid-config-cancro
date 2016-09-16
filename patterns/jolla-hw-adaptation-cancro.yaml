@@ -82,5 +82,8 @@ Requires:
 - jolla-mediaplayer
 - jolla-mediaplayer-radio
 
+# For Torch in Events View
+- jolla-settings-system-flashlight
+
 Summary: Jolla HW Adaptation cancro
 
