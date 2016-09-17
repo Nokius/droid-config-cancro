@@ -85,5 +85,8 @@ Requires:
 # For Torch in Events View
 - jolla-settings-system-flashlight
 
+# For sdcard on Mi4
+- sd-utils
+
 Summary: Jolla HW Adaptation cancro
 
