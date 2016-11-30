@@ -1,0 +1,2 @@
+CONFIG="-n --file=/etc/pulse/arm_qualcomm_msm_8974_cancro_flattened_device_tree_000b.pa"
+
