@@ -1,0 +1,12 @@
+[Unit]
+Description=Updates the device Model and Manufacturer from Android's getprop
+DefaultDependencies=false
+After=droid-hal-init.service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh /usr/bin/droid/update-product-details.sh 
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

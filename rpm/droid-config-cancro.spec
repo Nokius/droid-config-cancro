@@ -3,7 +3,7 @@
 %define device cancro
 %define vendor xiaomi
 %define vendor_pretty Xiaomi
-%define device_pretty Mi3
+%define device_pretty Cancro
 %define dcd_path ./
 # Adjust this for your device
 %define pixel_ratio 2.0
