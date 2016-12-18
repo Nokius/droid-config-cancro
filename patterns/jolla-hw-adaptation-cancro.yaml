@@ -5,7 +5,7 @@ Description: Pattern with packages for cancro HW Adaptation
 Name: jolla-hw-adaptation-cancro
 Requires:
 - pattern:jolla-hw-adaptation-hybris
-- pattern:jolla-hw-adaptation-hybris-droid-vibrator
+#- pattern:jolla-hw-adaptation-hybris-droid-vibrator
 - pattern:jolla-ui-configuration-cancro
 
 - droid-hal-cancro
@@ -17,6 +17,8 @@ Requires:
 - droid-config-cancro-policy-settings
 - droid-config-cancro-preinit-plugin
 - droid-hal-version-cancro
+
+- qt5-feedback-haptics-ffmemless
 
 - pulseaudio-modules-droid
 - pulseaudio-modules-droid-glue
