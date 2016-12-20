@@ -1,29 +1,63 @@
 #!/bin/sh
 
-# Maximum number of attempts to enable hcismd to try to get
-# hci0 to come online.  Writing to sysfs too early seems to
-# not work, so we loop.
-MAXTRIES=15
+TIMEOUT=10
 
-i=1
-while [ ! $i -gt $MAXTRIES ]  ; do
-    echo 1 > /sys/module/hci_smd/parameters/hcismd_set
-    if [ -e /sys/class/bluetooth/hci0 ] ; then
-        # found hci0, get/set BT MAC address
-        echo 0 > /sys/module/hci_smd/parameters/hcismd_set
-        bt_mac=$(/system/bin/hci_qcomm_init -e -p 2 -P 2 -d /dev/ttyHSL0 2>1 | grep -oP '([0-9a-f]{2}:){5}([0-9a-f]{2})')
-        echo "BT MAC: $bt_mac"
-        if [ ! -z "$bt_mac" ] ; then
-            echo $bt_mac > /var/lib/bluetooth/board-address
-            echo "BT MAC: $bt_mac"
-        fi
-        echo 1 > /sys/module/hci_smd/parameters/hcismd_set
-        exit 0
+function logn {
+  echo "droid-hcismd-up:" $@ | systemd-cat -p notice
+}
+
+function logd {
+  echo "droid-hcismd-up:" $@ | systemd-cat -p debug
+}
+
+function loge {
+  echo "droid-hcismd-up:" $@ | sysnted-cat -p err
+}
+
+function wait_for_path {
+  local TIME=0
+  logd "Waiting for... " $1
+  while [ "$TIME" -lt "$TIMEOUT" ]; do
+    if [ -e $1 ]; then
+      return 0
     fi
     sleep 1
-    if [ $i == $MAXTRIES ] ; then
-        # must have gotten through all our retries, fail
-        exit 1
-    fi
+    TIME=$((TIME + 1))
+  done
+  loge "Timed out!"
+  return -1
+}
 
-done
+function wait_for_property_to_equal {
+  local TIME=0
+  logd "Waiting for..." getprop $1 == $2
+  while [ "$TIME" -lt "$TIMEOUT" ]; do
+    if [ `getprop $1` == $2  ]; then
+      return 0
+    fi
+    sleep 1
+    TIME=$(($TIME + 1))
+  done
+  loge "...Timed out!"
+  return -1
+}
+
+logn "Initializing Bluetooth"
+
+wait_for_path "/dev/smd3" || exit -1
+wait_for_property_to_equal "ro.qualcomm.bt.hci_transport" "smd" || exit -1
+
+logd "Requesting BT Mac address"
+bt_mac=$(/system/bin/hci_qcomm_init -e -p 2 -P 2 -d /dev/ttyHSL0 2>&1 | grep -oP '([0-9a-f]{2}:){5}([0-9a-f]{2})')
+logd "BT MAC: $bt_mac"
+if [ ! -z "$bt_mac" ] ; then
+  echo $bt_mac > /var/lib/bluetooth/board-address
+else
+  loge "Couldn't find BT Mac address"
+  exit -1
+fi
+
+wait_for_path "/sys/module/hci_smd/parameters/hcismd_set" || exit -1
+echo 1 > /sys/module/hci_smd/parameters/hcismd_set
+
+logn "Bluetooth initialized"
