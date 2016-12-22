@@ -11,6 +11,7 @@ Requires:
 - droid-hal-cancro
 - droid-hal-cancro-detritus
 - droid-hal-cancro-img-boot
+- droid-hal-cancro-kernel
 - droid-hal-cancro-kernel-modules
 - droid-config-cancro-sailfish
 - droid-config-cancro-pulseaudio-settings
