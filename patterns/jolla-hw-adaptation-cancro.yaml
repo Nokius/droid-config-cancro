@@ -5,7 +5,6 @@ Description: Pattern with packages for cancro HW Adaptation
 Name: jolla-hw-adaptation-cancro
 Requires:
 - pattern:jolla-hw-adaptation-hybris
-#- pattern:jolla-hw-adaptation-hybris-droid-vibrator
 - pattern:jolla-ui-configuration-cancro
 
 - droid-hal-cancro
@@ -13,6 +12,7 @@ Requires:
 - droid-hal-cancro-img-boot
 - droid-hal-cancro-kernel
 - droid-hal-cancro-kernel-modules
+- droid-config-cancro-flashing
 - droid-config-cancro-sailfish
 - droid-config-cancro-pulseaudio-settings
 - droid-config-cancro-policy-settings
@@ -41,6 +41,9 @@ Requires:
 - gstreamer1.0-plugins-base
 - gstreamer1.0-plugins-bad
 - nemo-gstreamer1.0-interfaces
+
+#For audio recording
+- qt5-qtmultimedia-plugin-mediaservice-gstmediacapture
 
 - gstreamer1.0-droid
 
@@ -76,6 +79,9 @@ Requires:
 
 # For devices where test_gps eventually gets a fix:
 - geoclue-provider-hybris
+
+# For offline location provider
+- geoclue-provider-mlsdb
 
 # For FM radio
 - qt5-qtmultimedia-plugin-mediaservice-irisradio
