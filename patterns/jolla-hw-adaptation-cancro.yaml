@@ -4,9 +4,6 @@
 Description: Pattern with packages for cancro HW Adaptation
 Name: jolla-hw-adaptation-cancro
 Requires:
-- pattern:jolla-hw-adaptation-hybris
-- pattern:jolla-ui-configuration-cancro
-
 - droid-hal-cancro
 - droid-hal-cancro-detritus
 - droid-hal-cancro-img-boot
@@ -19,6 +16,17 @@ Requires:
 - droid-config-cancro-preinit-plugin
 - droid-hal-version-cancro
 
+# Hybris packages
+- libhybris-libEGL
+- libhybris-libGLESv2
+- libhybris-libwayland-egl
+
+# Sensors
+- hybris-libsensorfw-qt5
+
+# Needed for /dev/touchscreen symlink
+- qt5-plugin-generic-evdev
+
 - qt5-feedback-haptics-ffmemless
 
 - pulseaudio-modules-droid
@@ -28,12 +36,6 @@ Requires:
 - qt5-qtwayland-wayland_egl
 - qt5-qpa-hwcomposer-plugin
 - qtscenegraph-adaptation
-
-# GStreamer v0.10 multimedia support is being deprecated
-#- gstreamer0.10-droidcamsrc
-#- gstreamer0.10-omx
-#- gstreamer0.10-droideglsink
-#- nemo-qtmultimedia-plugins-gstvideotexturebackend
 
 # Add GStreamer v1.0 as standard
 - gstreamer1.0
