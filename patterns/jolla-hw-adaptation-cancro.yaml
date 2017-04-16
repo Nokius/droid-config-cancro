@@ -57,6 +57,8 @@ Requires:
 - usb-moded
 - usb-moded-defaults-android
 - usb-moded-developer-mode-android
+# OTG-USB support
+- usbstick-utils
 
 # Extra useful modes not officially supported:
 # might need some configuration to get working
