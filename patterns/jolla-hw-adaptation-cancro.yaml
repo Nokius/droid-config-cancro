@@ -14,6 +14,7 @@ Requires:
 - droid-config-cancro-pulseaudio-settings
 - droid-config-cancro-policy-settings
 - droid-config-cancro-preinit-plugin
+- droid-config-cancro-bluez4
 - droid-hal-version-cancro
 
 # Hybris packages
@@ -77,15 +78,8 @@ Requires:
 # Settings app needs this since update15
 - jolla-settings-layout
 
-# For devices with working cellular modem:
-- pattern:jolla-sailfish-cellular-apps
-- telepathy-ring
-
 # For devices where test_gps eventually gets a fix:
 - geoclue-provider-hybris
-
-# For offline location provider
-- geoclue-provider-mlsdb
 
 # For FM radio
 - qt5-qtmultimedia-plugin-mediaservice-irisradio
